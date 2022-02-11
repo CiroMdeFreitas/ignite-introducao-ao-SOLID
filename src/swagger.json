@@ -43,6 +43,65 @@
                         "description": "Email already in use"
                     }
                 }
+            },
+            "get": {
+                "tags": ["User"],
+                "summary": "Get all users",
+                "description": "Get a list of all users",
+                "parameters": [{ 
+                    "name": "id",
+                    "in": "header",
+                    "required": true,
+                    "description": "Id of the user requesting the users's list"
+                }],
+                "responses": {
+                    "201": {
+                        "description": "List of all users"
+                    },
+                    "400": {
+                        "description": "User requesting list is not an admin"
+                    }
+                }
+            }
+        },
+        "/users/:user_id": {
+            "get": {
+                "tags": ["User", "user_id"],
+                "summary": "Get user profile",
+                "description": "Get specified user profile by id",
+                "parameters": [{ 
+                    "name": "id",
+                    "in": "params",
+                    "required": true,
+                    "description": "Id of the user requested the user"
+                }],
+                "responses": {
+                    "201": {
+                        "description": "List resquested user profile"
+                    },
+                    "404": {
+                        "description": "User does not exist"
+                    }
+                }
+            },
+            "patch": {
+                "tags": ["User", "user_id"],
+                "summary": "Turns user admin",
+                "description": "Turns specified user as admin through id",
+                "parameters": [{ 
+                    "name": "id",
+                    "in": "params",
+                    "required": true,
+                    "description": "Id of the user whom will become admin"
+                }],
+                "responses": {
+                    "201": {
+                        "description": "User has been turned an admin"
+                    },
+                    "404": {
+                        "description": "User does not exist"
+                    }
+                }
             }
         }
     }
